@@ -23,7 +23,7 @@ setup(
     keywords='twitter api bot farm',
     description='"Framework" for running a lot of twitterbots without useless twitter API calls.',
     long_description=(read('README.md')),
-    packages=find_packages(exclude=['tests*']),
+    packages=find_packages(where='src'),
     install_requires=['twitterbot-utils>=0.1.8', 'dictator'],
     classifiers=[
         'Development Status :: 3 - Alpha',
