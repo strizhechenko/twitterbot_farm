@@ -15,14 +15,14 @@ def read(*paths):
 
 setup(
     name='twitterbot_farm',
-    version='0.0.4',
+    version='0.0.5',
     author='Oleg Strizhechenko',
     author_email='oleg.strizhechenko@gmail.com',
     license='GPL',
     url='https://github.com/strizhechenko/twitterbot_farm',
     keywords='twitter api bot farm',
     description='"Framework" for running a lot of twitterbots without useless twitter API calls.',
-    long_description=(read('README.md')),
+    long_description=(read('README.rst')),
     packages=find_packages(exclude=['tests*']),
     install_requires=['twitterbot-utils>=0.1.8', 'dictator'],
     classifiers=[
