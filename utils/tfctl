@@ -1,0 +1,32 @@
+#!/bin/bash
+
+usage() {
+	echo "Usage"
+	echo "  help		- show this help"
+	echo "	init"
+	echo "	create	<bot>	- create new bot"
+	echo "	start	<bot>	- start bot"
+	echo "	stop	<bot>	- stop bot"
+	echo "	auth	<bot>	- running webbrowser to auth your bot"
+	echo "	start-all	- start every bot"
+	exit 1
+}
+
+init() {
+	service redis restart
+}
+
+run_bot() {
+	local bot="$1"
+	echo "starting: $bot"
+	cd $bot
+	./run.sh
+}
+
+start_all() {
+	for bot in /opt/twitterbot_farm_bots/*; do
+		( run_bot "$bot" )
+	done
+}
+
+"${@:-usage}"
