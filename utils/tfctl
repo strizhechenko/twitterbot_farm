@@ -1,14 +1,23 @@
 #!/bin/bash
 
+MAINDIR=/opt/twitterbot_farm/
+ENV=$MAINDIR/env/bin/activate
+BOTS=${MAINDIR%/}_bots/
+
+. $ENV
+
+set -eu
+
 usage() {
 	echo "Usage"
-	echo "  help		- show this help"
-	echo "	init"
-	echo "	create	<bot>	- create new bot"
-	echo "	start	<bot>	- start bot"
-	echo "	stop	<bot>	- stop bot"
-	echo "	auth	<bot>	- running webbrowser to auth your bot"
-	echo "	start-all	- start every bot"
+	echo "	init				- make farm possible to run"
+	echo "  help				- show this help"
+	echo "	create <bot>			- create new bot"
+	echo "	start <bot>			- start bot"
+	echo "	stop <bot>			- stop bot"
+	echo "	list				- show list of bots"
+	echo "	auth <bot> <token> <secret>	- running webbrowser to auth your bot"
+	echo "	start-all			- start every bot"
 	exit 1
 }
 
@@ -16,17 +25,22 @@ init() {
 	service redis restart
 }
 
-run_bot() {
+list() {
+	ls $BOTS/ | xargs -L 1 echo
+}
+
+start() {
 	local bot="$1"
 	echo "starting: $bot"
-	cd $bot
-	./run.sh
+	( cd $BOTS/$bot; ./run.sh )
+}
+
+auth() {
+	python $MAINDIR/tfctl.py ${FUNCNAME[0]} "$@"
 }
 
 start_all() {
-	for bot in /opt/twitterbot_farm_bots/*; do
-		( run_bot "$bot" )
-	done
+	find $BOTS -maxdepth 1 -mindepth 1 -type d | xargs -L 1 start
 }
 
 "${@:-usage}"
