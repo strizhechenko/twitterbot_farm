@@ -5,7 +5,7 @@ from dictator import Dictator
 class Writer(Bot):
 
     def __init__(self, username, host, db):
-        Bot.__init__(username, host, db)
+        Bot.__init__(self, username, host, db)
         self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 0))
         self.rates = Dictator(username + '_rate', host, db)
 
