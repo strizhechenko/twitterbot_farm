@@ -7,7 +7,7 @@ class Reader(Bot):
 
     def __init__(self, username):
         Bot.__init__(self, username)
-        self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 0))
+        self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 1))
 
     def save(self, tweet_list):
         for tweet in tweet_list:
