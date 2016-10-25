@@ -4,6 +4,8 @@ from dictator import Dictator
 
 class Writer(Bot):
 
+    """ Reads tweets from reader db. Templating, filter (rate and duplicate) and post. """
+
     def __init__(self, username, host, db):
         Bot.__init__(self, username, host, db)
         self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 0))

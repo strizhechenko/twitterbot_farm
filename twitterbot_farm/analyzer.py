@@ -2,6 +2,11 @@ from bot import Bot
 
 
 class Analyzer(Bot):
+    """
+    1. Reads writer feed
+    2. counts likes/retweets
+    3. modifies words/phrases rates
+    """
 
     def __init__(self):
         Bot.__init__(self)
