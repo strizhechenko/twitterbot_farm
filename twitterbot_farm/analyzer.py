@@ -8,9 +8,9 @@ class Analyzer(Bot):
     3. modifies words/phrases rates
     """
 
-    def __init__(self):
-        Bot.__init__(self)
-        self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 0))
+    def __init__(self, username):
+        Bot.__init__(self, username)
+        self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 1))
 
     def fetch(self):
         pass

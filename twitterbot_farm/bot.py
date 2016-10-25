@@ -9,7 +9,8 @@ class Bot(object):
     def __init__(self, username, host='127.0.0.1'):
         auth = Dictator(host=host)
         consumer_key, consumer_secret = auth.get('__app__')
-        _, db_id, access_token, access_secret = auth.get('@' + username)
+        self.role, db_id, access_token, access_secret, self.reader_db_id, self.analyzer_db_id, self.template = \
+            auth.get('@' + username)
         self.connection = Dictator(host=host, db=db_id)
         self.twibot = Twibot(method='params',
                              consumer_key=consumer_key,
