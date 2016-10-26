@@ -46,11 +46,11 @@
 ```
 __app__ = [consumer_key, consumer_secret]
 
-@botname =          [       role,  db_id,  token, secret, reader, analyzer ]
-                    [-----------+-------+-------+-------+-------+----------]
-@bot14 =            [   'reader',      1, '123b', '456a',   None,     None ]
-@bot15 =            [   'writer',      2, '789c', '012d',      1,        3 ]
-@bot15_analyst =    [ 'analyzer',      3, '789c', '012d',   None,     None ]
+@botname =          [       role,  db_id,  token, secret, reader, analyzer,             template]
+                    [-----------+-------+-------+-------+-------+---------+---------------------]
+@bot14 =            [   'reader',      1, '123b', '456a',   None,     None                 None ]
+@bot15 =            [   'writer',      2, '789c', '012d',      1,        3  'Гарри Поттер и {0}']
+@bot15_analyst =    [ 'analyzer',      3, '789c', '012d',   None,     None                 None ]
 ```
 
 ### db 1. reader (example)
