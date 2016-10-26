@@ -1,5 +1,4 @@
 from bot import Bot
-from dictator import Dictator
 
 
 class Writer(Bot):
@@ -9,8 +8,6 @@ class Writer(Bot):
     def __init__(self, username,):
         Bot.__init__(self, username)
         self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 1))
-        self.reader = Dictator(self.reader_db_id)
-        self.analyzer = Dictator(self.analyzer_db_id)
 
     def tweet(self):
         pass
