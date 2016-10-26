@@ -15,7 +15,7 @@ def read(*paths):
 
 setup(
     name='twitterbot_farm',
-    version='0.0.10',
+    version='0.0.11',
     author='Oleg Strizhechenko',
     author_email='oleg.strizhechenko@gmail.com',
     license='GPL',
