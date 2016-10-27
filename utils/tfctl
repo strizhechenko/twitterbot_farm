@@ -18,11 +18,19 @@ usage() {
 	echo "	list				- show list of bots"
 	echo "	auth <bot> <token> <secret>	- running webbrowser to auth your bot"
 	echo "	start-all			- start every bot"
+	echo "	oneshot <bot>			- one tweet from bot"
 	exit 1
 }
 
 init() {
 	service redis restart
+}
+
+oneshot() {
+	local bot="$1"
+	cd "$BOTS/$bot"
+	. env.sh
+	python bot.py &>>"/var/log/$bot.log"
 }
 
 list() {
