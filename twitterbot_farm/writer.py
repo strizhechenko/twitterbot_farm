@@ -9,7 +9,8 @@ class Writer(Bot):
         Bot.__init__(self, username, host)
         self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 1))
 
-    def tweet(self, key, tweet, result):
+    def tweet(self, key, result):
+        tweet = unicode(self.template, 'utf-8').format(result).encode('utf-8')
         tweet_rc = self.twibot.api.update_status(tweet)
         # pylint: disable=E1101
         self.connection[result] = tweet_rc.id
