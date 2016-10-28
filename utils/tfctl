@@ -27,12 +27,11 @@ init() {
 oneshot() {
 	local bot="$1"
 	local log="${2:-0}"
-	cd "$BOTS/$bot"
-	. env.sh
+	export username="$bot"
 	if [ "$log" = '0' ]; then
-		$PYTHON bot.py &>>"/var/log/$bot.log"
+		$PYTHON $BOTS/$bot/bot.py &>>"/var/log/$bot.log"
 	else
-		$PYTHON bot.py
+		$PYTHON $BOTS/$bot/bot.py
 	fi
 }
 
