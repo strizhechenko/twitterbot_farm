@@ -9,12 +9,12 @@ set -eu
 usage() {
 	echo "Usage"
 	echo "	init				- make farm possible to run"
-	echo "  help				- show this help"
-	echo "	create <bot>			- create new bot"
+	echo "	help				- show this help"
 	echo "	start <bot>			- start bot"
 	echo "	stop <bot>			- stop bot"
 	echo "	list				- show list of bots"
-	echo "	auth <bot> <token> <secret>	- running webbrowser to auth your bot"
+	echo "	create <bot> <role> <db> <token> <secret> [<reader_db> <analyzer_db> <template>]"
+	echo "					- create new reader/writer/analyzer bot"
 	echo "	start-all			- start every bot"
 	echo "	oneshot <bot>			- one tweet from bot"
 	exit 1
@@ -46,8 +46,28 @@ start() {
 	( cd $BOTS/$bot; ./run.sh )
 }
 
-auth() {
-	tfctl.py ${FUNCNAME[0]} "$@"
+create() {
+	if [ "$#" -gt 4 ]; then
+		tfctl.py ${FUNCNAME[0]} "$@"
+		return
+	fi
+	set -xeu
+
+	read name
+	read role
+	read db
+	read token
+	read secret
+
+	if [ "$role" = 'writer' ]; then
+		read reader_db
+		read analyzer_db
+		read template
+		tfctl.py ${FUNCNAME[0]} $name $role $db $token $secret $reader_db $analyzer_db $template
+		exit 0
+	fi
+
+	tfctl.py ${FUNCNAME[0]} $name $role $db $token $secret
 }
 
 start_all() {
