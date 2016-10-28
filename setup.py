@@ -15,7 +15,7 @@ def read(*paths):
 
 setup(
     name='twitterbot_farm',
-    version='0.1.2',
+    version='0.1.4',
     author='Oleg Strizhechenko',
     author_email='oleg.strizhechenko@gmail.com',
     license='GPL',
@@ -24,6 +24,7 @@ setup(
     description='"Framework" for running a lot of twitterbots without useless twitter API calls.',
     long_description=(read('README.rst')),
     packages=find_packages(exclude=['tests*']),
+    scripts=['utils/tfctl', 'utils/tfctl.py'],
     install_requires=['twitterbot-utils>=0.1.8', 'dictator'],
     classifiers=[
         'Development Status :: 3 - Alpha',

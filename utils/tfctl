@@ -1,10 +1,8 @@
 #!/bin/bash
 
 MAINDIR=/opt/twitterbot_farm/
-ENV=$MAINDIR/env/bin/activate
 BOTS=${MAINDIR%/}_bots/
-
-. $ENV
+PYTHON="${PYTHON:-python2.7}"
 
 set -eu
 
@@ -32,9 +30,9 @@ oneshot() {
 	cd "$BOTS/$bot"
 	. env.sh
 	if [ "$log" = '0' ]; then
-		python bot.py &>>"/var/log/$bot.log"
+		$PYTHON bot.py &>>"/var/log/$bot.log"
 	else
-		python bot.py
+		$PYTHON bot.py
 	fi
 }
 
@@ -49,7 +47,7 @@ start() {
 }
 
 auth() {
-	python $MAINDIR/tfctl.py ${FUNCNAME[0]} "$@"
+	tfctl.py ${FUNCNAME[0]} "$@"
 }
 
 start_all() {
