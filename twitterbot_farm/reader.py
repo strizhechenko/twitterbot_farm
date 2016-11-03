@@ -5,8 +5,8 @@ from bot import Bot
 class Reader(Bot):
     """ Reads fead and stores them into redis db. """
 
-    def __init__(self, username):
-        Bot.__init__(self, username)
+    def __init__(self, username, host='127.0.0.1'):
+        Bot.__init__(self, username, host)
         self.last_tweet_id = int(self.connection.get('__last_tweet_id__', 1))
 
     def save(self, tweet_list):
