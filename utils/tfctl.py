@@ -1,15 +1,19 @@
-#!/usr/local/bin/python2.7
+#!/usr/bin/env python2.7
 # coding: utf-8
 
 """ ctl for everything that can't be done without python """
 
+from os import getenv
 from sys import argv
 from json import dumps
 from dictator import Dictator
+from twitterbot_farm import Reader, Writer
+
+HOST = getenv('HOST', '127.0.0.1')
 
 
 def create():
-    Dictator()[argv[2]] = argv[3:]
+    Dictator(host=HOST)[argv[2]] = argv[3:]
 
 
 def error():
