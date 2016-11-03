@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 MAINDIR=/opt/twitterbot_farm/
 BOTS=${MAINDIR%/}_bots/
@@ -71,6 +71,10 @@ create() {
 
 start_all() {
 	find $BOTS -maxdepth 1 -mindepth 1 -type d | xargs -L 1 start
+}
+
+stats() {
+	tfctl.py stats
 }
 
 "${@:-usage}"

@@ -21,13 +21,27 @@ def error():
 
 
 def dump():
-    print dumps(Dictator().items(), indent=4, ensure_ascii=False)
+    print dumps(Dictator(host=HOST).items(), indent=4, ensure_ascii=False)
+
+
+def stats():
+    connect = Dictator(host=HOST)
+    bots = [bot for bot in connect.keys() if bot != '__app__']
+    for bot_name in bots:
+        role = connect[bot_name][0]
+        if role == 'reader':
+            bot = Reader(bot_name.replace('@', ''), HOST)
+            print "{0}={1}".format(bot_name, len(bot.connection.keys()))
+        elif role == 'writer':
+            bot = Writer(bot_name.replace('@', ''), HOST)
+            print "{0}={1}".format(bot_name, len(bot.unprocessed_lines()))
 
 
 def main():
     commands = {
         'create': create,
         'dump': dump,
+        'stats': stats,
     }
 
     assert argv[1] in commands, "Unknown command {0}".format(argv[1])
