@@ -48,7 +48,7 @@ def send_stats():
     for bot_name, value in __stats__().items():
         data = "{0} value={1}".format(bot_name, value)
         print INFLUXDB_URL, '-d', data
-        # post(INFLUXDB_URL, data)
+        post(INFLUXDB_URL, data)
 
 
 def main():

@@ -77,4 +77,12 @@ stats() {
 	tfctl.py stats
 }
 
+dump() {
+	tfctl.py dump
+}
+
+send_stats() {
+	tfctl.py send_stats
+}
+
 "${@:-usage}"
