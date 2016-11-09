@@ -85,4 +85,7 @@ send_stats() {
 	tfctl.py send_stats
 }
 
+tweet() {
+	tfctl.py tweet "$@"
+}
 "${@:-usage}"

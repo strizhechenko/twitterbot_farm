@@ -51,12 +51,20 @@ def send_stats():
         post(INFLUXDB_URL, data)
 
 
+def tweet():
+    bot_name = argv[2]
+    text = " ".join(argv[3:])
+    bot = Writer(bot_name, HOST)
+    bot.twibot.api.update_status(text)
+
+
 def main():
     commands = {
         'create': create,
         'dump': dump,
         'stats': stats,
         'send_stats': send_stats,
+        'tweet': tweet,
     }
 
     assert argv[1] in commands, "Unknown command {0}".format(argv[1])
