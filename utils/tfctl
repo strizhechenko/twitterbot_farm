@@ -94,4 +94,9 @@ print_best() {
 	python2.7 -c "from twitterbot_farm import Analyzer; Analyzer('"$bot"').print_best()"
 }
 
+update_rates() {
+	local bot="$1"
+	python2.7 -c "from twitterbot_farm import Analyzer; Analyzer('"$bot"').update_rates()"
+}
+
 "${@:-usage}"
