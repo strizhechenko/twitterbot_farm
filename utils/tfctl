@@ -88,4 +88,10 @@ send_stats() {
 tweet() {
 	tfctl.py tweet "$@"
 }
+
+print_best() {
+	local bot="$1"
+	python2.7 -c "from twitterbot_farm import Analyzer; Analyzer('"$bot"').print_best()"
+}
+
 "${@:-usage}"
